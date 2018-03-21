@@ -1,0 +1,16 @@
+[Unit]
+Description=Transmission BitTorrent Daemon
+After=network.target openvpn@toronto.service
+Requires=openvpn@toronto.service
+
+[Service]
+PermissionsStartOnly=true
+User=debian-transmission
+Type=notify
+ExecStartPre=/bin/cp /etc/transmission-daemon/settings.json.edits /etc/transmission-daemon/settings.json
+ExecStart=/usr/bin/transmission-daemon -f --log-error
+ExecStop=/bin/kill -s STOP $MAINPID
+ExecReload=/bin/kill -s HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

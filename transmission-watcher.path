@@ -1,0 +1,5 @@
+[Path]
+PathModified=/etc/transmission-daemon/settings.json.edits
+
+[Install]
+WantedBy=multi-user.target
